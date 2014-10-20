@@ -1,0 +1,54 @@
+<!--
+This is the 'page' of our Single Page Application (SPA). It loads up the necessary framework files and custom application code.
+We're using a Visualforce Page so we can take advantage of JavaScript Remote Objects.
+-->
+<apex:page applyBodyTag="false" docType="html-5.0" showHeader="false" standardStylesheets="false">
+	<apex:remoteObjects >
+		<!--
+		Each proxy object is defined by an apex:remoteObjectModel tag. The name attribute is set to the API name of the SObject you want perform DML operations on.
+		The jsShorthand attribute is set to the JavaScript object name used to instantiate it.
+		The fields attribute is set to a comma-delimited list of SObjectFields you want to load.
+		-->
+        <apex:remoteObjectModel name="Contact" jsShorthand="ContactGateway" fields="Id,FirstName,LastName,CreatedDate">
+        	<!--
+        	Each field you load in to your proxy object can re-mapped to a friendlier name
+        	-->
+        	<apex:remoteObjectField name="Favorite_Beer_Category__c" jsShorthand="FavoriteBeerCategory" />
+        </apex:remoteObjectModel>
+	</apex:remoteObjects>
+	<link rel="stylesheet" href="{!URLFOR($Resource.ContactManagerSPA, 'vendor/bootstrap/dist/css/bootstrap.min.css')}" />
+	<!-- 
+	The ng-app directive auto-bootstraps our SPA to the "contactManager" module.
+	-->
+    <body ng-app="contactManager">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<img class="img-responsive" src="{!URLFOR($Resource.ContactManagerSPA, 'assets/images/sundog_logo.jpg')}" />
+				</div>
+				<div class="col-md-9">
+					&nbsp;
+				</div>
+			</div>
+			<h1>Contact Manager</h1>
+    		<!--
+    		The ng-view directive is provided by the ngRoute module and includes the rendered template in to the main layout.
+    		-->
+			<div ng-view="ng-view">
+			</div>
+    	</div>
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'vendor/jquery/dist/jquery.min.js')}"></script>
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'vendor/angular/angular.min.js')}"></script>
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'vendor/angular-route/angular-route.min.js')}"></script>
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'vendor/bootstrap/dist/js/bootstrap.min.js')}"></script>
+		<!-- ContactManager module -->
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'app/app.js')}"></script>
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'app/contact/contact-entity.js')}"></script>
+		<!-- ContactList controller -->
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'app/contact/contact-list-controller.js')}"></script>
+		<!-- ContactNew controller -->
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'app/contact/contact-new-controller.js')}"></script>
+		<!-- ContactEdit controller -->
+		<script src="{!URLFOR($Resource.ContactManagerSPA, 'app/contact/contact-edit-controller.js')}"></script>
+    </body>
+</apex:page>

@@ -1,0 +1,112 @@
+<!--
+This is an AngularJS (ng) Template. It contains your HTML markup as well as ng Directives and ng Expressions.
+It is parsed and processed by the ng Compiler and the generated DOM becomes the ng View your users interact with.
+
+ng Directives and ng Expressions work with variables made accessible through ng's Scope which is separate from JavaScripts global scope.
+The values stored in these variables are refered to as the ng "Model".
+-->
+<p>
+	<label>Search</label>
+	<!--
+	The ng-model directive updates the value of the input based on the value of the expression.
+	-->
+	<input ng-model="query" />
+</p>
+<div class="text-center">
+	<a class="btn btn-default btn-xs" href="#/new">New</a>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				&nbsp;
+			</th>
+			<th>
+				Id
+			</th>
+			<th>
+				<!--
+				The ng-click directive evaluates the expression when the element is clicked.
+				are assigning values to.
+				-->
+				<a ng-click="predicate = 'firstName'; reverse = !reverse;">First Name</a>
+			</th>
+			<th>
+				<a ng-click="predicate = 'lastName'; reverse = !reverse;">Last Name</a>
+			</th>
+			<th>
+				<a ng-click="predicate = 'favoriteBeerCategory'; reverse = !reverse;">Favorite Beer Category</a>
+			</th>
+			<th>
+				<a ng-click="predicate = 'createdDate'; reverse = !reverse;">Created</a>
+			</th>
+		</tr>
+	</thead>
+	<tfoot>
+	</tfoot>
+	<tbody>
+		<!--
+		The ng-repeat directive loops over each item in a collection and instantiates a template for it.
+		filter and orderBy are ng Filters that we are using to format the expression.
+		filter is used to select items in the collection that match the expression.
+		orderBy is used to sort the collection by the "predicate" Model and the "reverse" Model determines whether or not to reverse the results.
+		-->
+		<tr ng-repeat="contact in persons | filter:query | orderBy:predicate:reverse">
+			<td>
+				<a class="btn btn-default btn-xs" href="#/edit/{{contact.id}}">Edit</a>
+				<a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDeleteModal" ng-click="selectContact(contact.id);" >Del</a>
+			</td>
+			<td>
+				<!--
+				Double curly braces are used to denote an ng Expression within the template itself that should be processed by the ng Compiler.
+				-->
+				{{contact.id}}
+			</td>
+			<td>
+				{{contact.firstName}}
+			</td>
+			<td>
+				{{contact.lastName}}
+			</td>
+			<td>
+				{{contact.favoriteBeerCategory}}
+			</td>
+			<td>
+				<!--
+				date is an ng Filter we can use on date values to format how they are displayed.
+				-->
+				{{contact.createdDate | date:medium}}
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p class="text-center">
+	<label>Limit</label>
+	<select ng-model="selectedLimit">
+		<option ng-repeat="limit in limits">{{limit}}</option>
+	</select>
+	<!--
+	The ng-hide directive hides elements when it's expression evalutes to true.
+	-->
+	<button class="btn btn-primary btn-xs" ng-click="loadMoreRecords($event)" ng-hide="!showMoreRecords">More Records</button>
+</p>
+
+<div>
+	<div class="modal" id="confirmDeleteModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" ng-click="selectContact(null);"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Delete Contact</h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to delete <strong>{{selectedContact.firstName}} {{selectedContact.lastName}}</strong>?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="selectContact(null);">Cancel</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteContact(selectedContact.id);">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

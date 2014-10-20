@@ -1,0 +1,22 @@
+<h2>New<br/><small>Contact</small></h2>
+<form role="form">
+	<div class="form-group">
+		<label for="firstName">First Name</label>
+		<input class="form-control" id="firstName" placeholder="First Name goes here" type="text" ng-model="entity.firstName" />
+	</div>
+	<div class="form-group">
+		<label for="lastName">Last Name</label>
+		<input class="form-control" id="lastName" placeholder="Last Name goes here" type="text" ng-model="entity.lastName"/>
+	</div>
+	<p>
+		{{entity.firstName}} {{entity.lastName}}
+	</p>
+	<div class="form-group">
+		<label for="favoriteBeerCategory">Favorite Beer Category</label>
+		<select class="form-control" id="favoriteBeerCategory" ng-model="entity.favoriteBeerCategory">
+			<option ng-repeat="beerCategory in beerCategories">{{beerCategory}}</option>
+		</select>
+	</div>
+	<button class="btn btn-default" type="submit" ng-click="cancel();">Cancel</button>
+	<button class="btn btn-primary" type="submit" ng-click="save();">Save</button>
+</form>

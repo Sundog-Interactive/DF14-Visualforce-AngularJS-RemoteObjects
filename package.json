@@ -1,0 +1,15 @@
+{
+  "name": "df14-visualforce-angularjs-remoteobjects",
+  "version": "0.0.0",
+  "description": "Sample code for Dreamforce14 presentation: Building Visualforce page with AngularJS and JavaScript Remote Objects",
+  "dependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-compress": "^0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compress": "^0.10.0"
+  },
+  "author": "Christopher Kulish",
+  "license": "ISC"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "DF14-Visualforce-AngularJS-RemoteObjects",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Sundog-Interactive/DF14-Visualforce-AngularJS-RemoteObjects",
+  "authors": [
+    "Christopher Kulish <chris.kulish@sundog.net>"
+  ],
+  "license": "none",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.0",
+    "angular-route": "~1.3.0",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0"
+  }
+}
