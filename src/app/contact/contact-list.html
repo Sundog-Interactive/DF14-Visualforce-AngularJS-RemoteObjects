@@ -80,14 +80,14 @@ The values stored in these variables are refered to as the ng "Model".
 		</tr>
 	</tbody>
 </table>
-<p class="text-center">
+<!--
+The ng-hide directive hides elements when it's expression evalutes to true.
+-->
+<p class="text-center" ng-hide="!showMoreRecords">
 	<label>Limit</label>
 	<select ng-model="selectedLimit">
 		<option ng-repeat="limit in limits">{{limit}}</option>
 	</select>
-	<!--
-	The ng-hide directive hides elements when it's expression evalutes to true.
-	-->
 	<button class="btn btn-primary btn-xs" ng-click="loadMoreRecords($event)" ng-hide="!showMoreRecords">More Records</button>
 </p>
 
