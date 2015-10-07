@@ -33,4 +33,6 @@ angular
 	/*
 	.service() is being used to make our proxy object available to the rest of the application to use 
 	*/
-	.service('contactGateway', SObjectModel.ContactGateway);
+	.service('contactGateway', function() {
+		return SObjectModel.ContactGateway;
+	});

@@ -9,6 +9,8 @@ angular
 	'contactGateway' is the proxy object created with the JavaScript Remote Object markup.
 	*/
 	.controller('contactListController', ['$scope', 'contactGateway', function($scope, contactGateway) {
+		//Instatiate an instance of the injected Remote Objects proxy object generated from Visualforce
+		var cg = new contactGateway();
 		$scope.persons = [];
 		$scope.limits = [5, 10, 25, 50, 100];
 		$scope.selectedLimit = 5;
@@ -30,10 +32,10 @@ angular
 			}
 
 			/*
-			contactGateway is the Remote Objects proxy object generated from Visualforce and then injected into our ng application.
+			cg is an instance of the Remote Objects proxy object generated from Visualforce and then injected into our ng application.
 			We're passing in the criteria object we built as well as a callback method to execute when the call is complete.
 			*/
-			contactGateway.retrieve(criteria, function(error, results, event) {
+			cg.retrieve(criteria, function(error, results, event) {
 				if (error) {
 					alert(error);
 					return;
@@ -91,7 +93,7 @@ angular
 		};
 
 		$scope.deleteContact = function(id) {
-			contactGateway.del(id, function(error, ids) {
+			cg.del(id, function(error, ids) {
 				if (error) {
 					alert(error);
 					return;
